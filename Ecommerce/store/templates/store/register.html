@@ -1,0 +1,57 @@
+{% extends "store/layout.html"%}  
+{% block content %}
+
+<section class="vh-100 d-flex justify-content-center align-items-center mt-1 bg-light py-5">
+     <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+
+<div class="card">
+    <div class="card-header">
+        Register
+    </div>
+<div class="card-body"> 
+<form action="{% url 'register' %}" method="post">
+    {% csrf_token %}
+    <div class="mb-4">
+     <input type="text" name="username" class="form-control form-control-md" placeholder="Username" />
+    {% if form.errors.username %}
+            <div class="text-danger">{{ form.errors.username.0 }}</div>
+    {% endif %}
+    </div>
+
+    <div class="mb-4">
+     <input type="email" name="email" class="form-control form-control-md" id="email" placeholder="Email">
+    {% if form.errors.email %}
+            <div class="text-danger">{{ form.errors.email.0 }}</div>
+    {% endif %}
+    </div>
+    
+    <div class="mb-4">
+     <input type="password" name="password1" class="form-control form-control-md" placeholder="Password" />
+    {% if form.errors.password1 %}
+            <div class="text-danger">{{ form.errors.password1.0 }}</div>
+    {% endif %}
+    </div>
+
+    <div class="mb-4">
+     <input type="password" name="password2" class="form-control form-control-md" placeholder="Password" />
+    {% if form.errors.password2 %}
+            <div class="text-danger">{{ form.errors.password2.0 }}</div>
+    {% endif %}
+    </div>
+    
+        </div>
+   
+   <div class="card-footer">
+       <div class="d-flex justify-content-between  pt-2">  
+    <button type="submit" class="btn btn-primary btn-md">Register</button>
+    </div>
+
+       </div>
+       </form>
+
+
+</div>
+</div>
+</div>
+</section>
+{% endblock %}
