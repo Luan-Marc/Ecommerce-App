@@ -66,16 +66,6 @@ Siga as instruções detalhadas abaixo para configurar o projeto em seu ambiente
     python manage.py migrate
     ```
 
-### Arquivos Estáticos e Mídia
-
-1. **Colete os arquivos estáticos:**
-
-    ```bash
-    python manage.py collectstatic
-    ```
-
-2. Configure o diretório raiz e a URL de mídia em `settings.py` para lidar com arquivos de mídia.
-
 ### Configuração do Crispy Forms
 
 1. O Crispy Forms está configurado com o Bootstrap 5. Ajuste as configurações `CRISPY_ALLOWED_TEMPLATE_PACKS` e `CRISPY_TEMPLATE_PACK` em `settings.py` se necessário.
