@@ -1,0 +1,141 @@
+{% extends "store/layout.html" %} {% block content %} {% load static %} {% csrf_token %}
+
+<section class="h-100">
+  <div class="container h-100 py-5">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-10">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <h3 class="fw-normal mb-0 text-black">Carrinho de compras</h3>
+        </div>
+        {% if cart_items %}
+        <!-- Loop para exibir itens no carrinho -->
+        {% for cart_item in cart_items %}
+        <div class="card rounded-3 mb-4" id="cart{{cart_item.id}}">
+          <div class="card-body p-4">
+            <div class="row d-flex justify-content-between align-items-center">
+              <div class="col-md-2 col-lg-2 col-xl-2">
+                <!-- Imagem do item -->
+                <img
+                  src="{{ cart_item.item.image.url }}"
+                  class="img-fluid rounded-3"
+                  alt="{{ cart_item.item.name }}"
+                />
+              </div>
+              <div class="col-md-3 col-lg-3 col-xl-3">
+                <!-- Nome e informações do item -->
+                <p class="lead fw-normal mb-2">{{ cart_item.item.name }}</p>
+                {% if cart_item.item.size %}
+                <p>
+                  <span class="text-muted">Size: </span>{{ cart_item.item.size}}
+                  P
+                </p>
+                {% endif %} {% if cart_item.item.size %}
+                <p>
+                  <span class="text-muted"> Color: </span> {{
+                  cart_item.item.color }} R
+                </p>
+                {% endif %}
+              </div>
+
+              <!-- Botões de quantidade -->
+              <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+                <input
+                  id="form{{ cart_item.id }}"
+                  min="0"
+                  name="quantity"
+                  value="{{ cart_item.quantity }}"
+                  type="number"
+                  class="form-control form-control-sm"
+                  onchange="updateCart(this)"
+                />
+              </div>
+
+              <!-- Preço total do item -->
+              <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                <h5 class="mb-0" id="totalprice{{ cart_item.id }}">
+                  R${{ cart_item.total_price }}
+                </h5>
+              </div>
+              <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                <!-- Link para remover item do carrinho -->
+                <a
+                  href="{% url 'remove_cart' cart_item.id %}"
+                  class="text-danger"
+                >
+                  <i class="fa fa-trash" aria-hidden="true"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %} {% else %}
+        <h4>No itens.</h4>
+        {% endif %}
+        <h4 id="Empty"></h4>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-11">
+        <div class="float-end mt-4">
+          <a href="{% url 'index'%}" style="text-decoration: none">
+            <button class="btn btn-light border">Voltar</button>
+          </a>
+
+          {% if cart_items|length >= 1 %}
+          <a href="{% url 'checkout'%}" style="text-decoration: none">
+            <button class="btn btn-success shadow-0 border" id="check">
+              Checkout
+            </button>
+          </a>
+          {% else %}
+          <!-- Desativar o botão de checkout se houver menos de dois produtos no carrinho -->
+          <button class="btn btn-success shadow-0 border" disabled>
+            Checkout
+          </button>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+function updateCart(inputElement) {
+   var cartItemId = inputElement.id.replace("form", ""); // Obtém o ID do item no carrinho
+   var quantity = inputElement.value; // Obtém o novo valor do campo de entrada
+   var csrfToken = $("[name='csrfmiddlewaretoken']").val();
+
+   $.ajax({
+      type: "POST",
+      url: "/update_cart/" + cartItemId + "/", 
+      data: { quantity: quantity, csrfmiddlewaretoken: csrfToken},
+      success: function (response) {
+         var updatedItemTotal = response.item_total_price;
+         var deleteditem = response.itemdeleted;
+         var hasitem = response.has_item;
+         var cartQuantity = response.cart_quantity;
+         var itemPriceElement = document.getElementById("totalprice" + cartItemId); 
+         
+         if (hasitem == false) {
+             document.getElementById("check").disabled = true;
+             console.log(hasitem);
+             document.getElementById("Empty").textContent = "Sem itens."
+         } 
+
+         if (deleteditem) {
+            //remover por id
+            console.log('cart' + deleteditem)
+            document.getElementById("cart" + deleteditem).remove()
+         }
+         else if (updatedItemTotal) {
+            itemPriceElement.textContent = "R$" + updatedItemTotal;
+         }
+         document.getElementById("cart-quantity").textContent = cartQuantity;
+      },
+      error: function () {
+         alert("Ocorreu um erro ao atualizar o carrinho.");
+      },
+   });
+}
+</script>
+{% endblock %}

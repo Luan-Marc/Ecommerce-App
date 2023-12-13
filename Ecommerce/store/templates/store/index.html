@@ -1,0 +1,172 @@
+{% extends "store/layout.html" %}
+{% block content %}
+{% load static %}
+{% csrf_token %}
+
+<!-- Categories -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top navbar-hidden">
+  <div class="container">
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mx-auto justify-content-center">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Ofertas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Acessórios</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Pulseiras</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Vestidos</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Jumbotron Logo -->
+<div class="jumbotron jumbotron-fluid custom-jumbotron custom-jumbotron-bg"
+  style="background-image: url({% static 'store/images/banners/1325.jpg' %});
+         background-size: cover;
+         background-position: center;"
+>
+  <!-- Your content goes here -->
+</div>
+
+<div id="our-products" class="jumbotron d-flex align-items-center justify-content-center custom-jumbotron-category">
+  <div class="container text-center">
+    <h1 class="display-6"><strong> Produtos </strong></h1>
+  </div>
+</div>
+
+<div class="container container-store">
+  <div class="row">
+    {% for product in products %}
+    <div class="col-md-4 col-sm-6">
+      <div class="product-grid">
+        <div class="product-image">
+          <!-- Imagem exibição -->
+          <a href="#">
+            <img class="pic-1" src="{{ product.image.url }}" alt="{{ product.name }}" />
+            <img class="pic-2" src="{{ product.image.url }}" alt="{{ product.name }}" />
+          </a>
+          <!-- Apendice -->
+          <ul class="social">
+            <li>
+              <a href="{% url 'detail' product.id %}" data-tip="Quick View">
+                <i class="fa fa-eye"></i>
+              </a>
+            </li>
+            {% if request.user.is_authenticated %}
+            <li>
+              <a data-tip="Add to Cart" class="add-to-cart-button" id="add_to_cart_{{ product.id }}">
+                <i class="fa fa-shopping-cart"></i>
+              </a>
+            </li>
+            {% else %}
+            <li>
+              <a href="{% url 'login' %}" data-tip="Quick View">
+                <i class="fa fa-shopping-cart"></i>
+              </a>
+            </li>
+            {% endif %}
+          </ul>
+        </div>
+        <div class="product-content">
+          <h3 class="title">
+            <a href="{% url 'detail' product.id %}">{{ product.name }}</a>
+          </h3>
+          <span class="price"> R$ {{ product.price }}</span>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+<!-- Catalog -->
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="card text-center" style="width: auto; height: auto;">
+          <div class="card-body d-flex flex-column justify-content-center align-items-center">
+            <span class="check-icon">&#10003;</span>
+            <h5 class="card-title"></h5>
+            <p class="card-text">Seu produto foi adicionado ao carrinho</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .check-icon {
+    font-size: 48px; /* Ajuste o tamanho conforme necessário */
+    animation: fadeIn 0.5s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  /* Remova a altura fixa do card */
+  .card {
+    height: auto;
+    border: none;
+  }
+</style>
+
+<script>
+  $(document).ready(function () {
+    // Hide the navigation bar initially
+    $(".navbar-hidden").hide();
+
+    $(window).scroll(function () {
+      var scrollPosition = $(this).scrollTop();
+      var showNavBarPosition = $("#our-products").offset().top;
+      if (scrollPosition > showNavBarPosition) {
+        $(".navbar-hidden").show();
+      } else {
+        $(".navbar-hidden").hide();
+      }
+    });
+  });
+</script>
+
+<script> 
+  document.querySelectorAll(".add-to-cart-button").forEach((button) => {
+    button.addEventListener("click", function (event) {
+      var productID = this.id.split("_")[3];
+      console.log("ID" + productID);
+      $("#exampleModal").modal("show");
+      updateCart(productID);
+    });
+  });
+
+  function updateCart(productID) {
+    var csrfToken = $("[name='csrfmiddlewaretoken']").val();
+    $.ajax({
+      type: "POST",
+      url: "/add/" + productID + "/", 
+      data: { productId: productID, csrfmiddlewaretoken: csrfToken, },
+      success: function (response) {
+        var cartQuantity = response.cart_quantity;
+        document.getElementById("cart-quantity").textContent = cartQuantity;
+      },
+      error: function () {
+        alert("Ocorreu um erro ao atualizar o carrinho.");
+      },
+    });
+  }
+</script>
+
+{% endblock %}

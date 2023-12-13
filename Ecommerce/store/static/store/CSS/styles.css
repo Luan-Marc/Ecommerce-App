@@ -1,0 +1,447 @@
+/* lateralizar navbar*/
+
+body {
+    color: #D9C9BA;
+    
+}
+
+.ml-auto {
+    justify-content: flex-end;
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding-left: 0%;
+}
+
+/* Estilo para o jumbotron */
+.custom-jumbotron {
+    height: 500px;
+    padding: 100px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.custom-jumbotron-category {
+    height: 10px;
+    padding: 30px;
+    margin-top: 1px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    text-align: center;
+
+}
+
+/* customização jumbotron*/
+.custom-jumbotron-bg {
+    background: #D3dCC5;
+    background-size: cover; /* Para cobrir todo o espaço do jumbotron */
+    background-position: center center; /* Para centralizar a imagem no jumbotron */
+    color: black; /* Define a cor do texto para branco */ 
+}
+
+/* customização store*/
+
+/* Estilo para o container */
+.container-store {
+    margin-top: 50px;
+}
+
+/* Estilo para os títulos */
+h3.h3 {
+    text-align: center;
+    margin: 1em;
+    text-transform: capitalize;
+    font-size: 1.7em;
+}
+
+
+/* Estilo para a estrutura geral do produto */
+.product-grid {
+    font-family: 'Open Sans', sans-serif;
+    position: relative;
+}
+
+/* Estilo para a imagem do produto */
+.product-grid .product-image {
+    overflow: hidden;
+    position: relative;
+}
+
+.product-grid .product-image a {
+    display: block;
+    position: relative;
+}
+
+.product-grid .product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit:contain;
+}
+
+/* Estilo para a imagem do produto ao passar o mouse */
+.product-image .pic-1 {
+    opacity: 1;
+    transition: all 0.5s;
+}
+
+.product-grid:hover .product-image .pic-1 {
+    opacity: 0;
+}
+
+.product-image .pic-2 {
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: all 0.5s;
+}
+
+.product-grid:hover .product-image .pic-2 {
+    opacity: 1;
+}
+
+/* Estilo para os ícones de mídia social */
+.product-grid .social {
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    bottom: 50px;
+    right: 25px;
+    z-index: 1;
+}
+
+.product-grid .social li {
+    margin: 0 0 10px;
+    display: block;
+    transform: translateX(100px);
+    transition: all 0.5s;
+}
+
+.product-grid:hover .social li {
+    transform: translateX(0);
+}
+
+.product-grid:hover .social li:nth-child(2) {
+    transition-delay: 0.15s;
+}
+
+.product-grid:hover .social li:nth-child(3) {
+    transition-delay: 0.25s;
+}
+
+.product-grid .social li a {
+    color: #505050;
+    background-color: #fff;
+    font-size: 17px;
+    line-height: 45px;
+    text-align: center;
+    height: 45px;
+    width: 45px;
+    border-radius: 50%;
+    display: block;
+    transition: all 0.3s ease 0s;
+}
+
+.product-grid .social li a:hover {
+    color: #fff;
+    background-color: #3498db;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.product-grid .social li a:after,
+.product-grid .social li a:before {
+    content: attr(data-tip);
+    color: #fff;
+    background-color: #000;
+    font-size: 12px;
+    line-height: 22px;
+    border-radius: 3px;
+    padding: 0 5px;
+    white-space: nowrap;
+    opacity: 0;
+    transform: translateX(-50%);
+    position: absolute;
+    left: 50%;
+    top: -30px;
+}
+
+.product-grid .social li a:after {
+    content: '';
+    height: 15px;
+    width: 15px;
+    border-radius: 0;
+    transform: translateX(-50%) rotate(45deg);
+    top: -22px;
+    z-index: -1;
+}
+
+.product-grid .social li a:hover:after,
+.product-grid .social li a:hover:before {
+    opacity: 1;
+}
+
+/* Estilo para o botão "Adicionar ao Carrinho" */
+.product-grid .add-to-cart {
+    color: #fff;
+    background-color: #404040;
+    font-size: 15px;
+    text-align: center;
+    width: 100%;
+    padding: 10px 0;
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: -100%;
+    transition: all 0.3s;
+}
+
+.product-grid .add-to-cart:hover {
+    background-color: #3498db;
+    text-decoration: none;
+}
+
+.product-grid:hover .add-to-cart {
+    bottom: 0;
+}
+
+/* Estilo para a etiqueta "Novo" do produto */
+.product-grid .product-new-label {
+    background-color: #3498db;
+    color: #fff;
+    font-size: 17px;
+    padding: 5px 10px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: all 0.3s;
+}
+
+.product-grid:hover .product-new-label {
+    opacity: 0;
+}
+
+/* Estilo para o conteúdo do produto */
+.product-grid .product-content {
+    padding: 20px 10px;
+    text-align: center;
+}
+
+.product-content a {
+    text-decoration: none;
+}
+
+
+.product-grid .title {
+    font-size: 17px;
+    margin: 0 0 7px;
+}
+
+.product-grid .title a {
+    color: #303030;
+}
+
+.product-grid .title a:hover {
+    color: #3498db;
+}
+
+/*footer*/
+/* Estilos gerais para o rodapé */
+.footer {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #D3dCC5;
+    color: #fff;
+    padding: 40px 0;
+}
+
+/* Estilo para os links no rodapé */
+.footer a {
+    color: #303030;
+    text-decoration: none;
+}
+
+/* Estilo para os títulos no rodapé */
+.footer h4 {
+    color: #303030;
+    font-size: 18px;
+}
+
+/* Estilo para as listas no rodapé */
+.footer ul {
+    list-style: none;
+    padding: 0;
+}
+
+/* Estilo para os itens de lista no rodapé */
+.footer li {
+    margin-bottom: 10px;
+}
+
+/* Estilo para ícones de redes sociais no rodapé */
+.footer .social-icons {
+    font-size: 24px;
+}
+
+/* Estilo para o espaço entre as colunas no rodapé */
+.footer .column {
+    padding: 0 20px;
+}
+
+/* Estilo para os ícones de redes sociais no rodapé */
+.footer .social-icons a {
+    color: #303030;
+    margin-right: 10px;
+    transition: color 0.3s;
+}
+
+/* Estilo para os ícones de redes sociais no rodapé ao passar o mouse */
+.footer .social-icons a:hover {
+    color: #3498db;
+}
+
+.fade-scale {
+  transform: scale(0);
+  opacity: 0;
+  -webkit-transition: all .25s linear;
+  -o-transition: all .25s linear;
+  transition: all .25s linear;
+}
+
+.fade-scale.in {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Estilos para a seção do carrinho */
+.cart_section {
+    padding: 50px 0;
+}
+
+.cart_container {
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.cart_title {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.cart_items {
+    margin-top: 20px;
+}
+
+.cart_list {
+    list-style: none;
+    padding: 0;
+}
+
+.cart_item {
+    border-bottom: 1px solid #e1e1e1;
+    padding: 20px 0;
+}
+
+.cart_item_image {
+    max-width: 100px;
+    max-height: 100px;
+    margin-right: 20px;
+}
+
+.cart_item_name {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.cart_item_color {
+    margin-top: 5px;
+    font-size: 14px;
+}
+
+.cart_item_quantity,
+.cart_item_price,
+.cart_item_total {
+    font-size: 14px;
+}
+
+.order_total {
+    margin-top: 20px;
+}
+
+.order_total_title {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.order_total_amount {
+    font-size: 24px;
+    font-weight: bold;
+    color: #e74c3c;
+}
+
+.cart_buttons {
+    margin-top: 20px;
+}
+
+.cart_button_clear,
+.cart_button_checkout {
+    background: #e74c3c;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.cart_button_clear:hover,
+.cart_button_checkout:hover {
+    background: #c0392b;
+}
+
+#cart-quantity {
+    color: #404040; /* Defina a cor do texto como branco ou a cor desejada */
+    background-color: #D3dCC5;; /* Defina a cor de fundo como vermelho ou a cor desejada */
+    padding: 2px 5px; /* Adicione algum preenchimento para melhorar o estilo */
+    border-radius: 80%; /* Faça um pouco de borda arredondada */
+}
+
+.navbar-hidden {
+    display: none;
+}
+
+.btn-custom {
+    background-color: #D3dCC5;
+    color: #fff; /* Adicionei esta linha para garantir contraste de texto */
+}
+
+.sidebar {
+    width: 280px;
+}
+
+.content {
+    flex-grow: 1;
+}
+
+.custom-link {
+    color: #D3dCC5;
+    background-color: #fff; /* Cor de fundo do link */
+    border-radius: 8px; /* Borda arredondada */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Efeito de transição suave */
+    text-decoration: none; /* Remova o sublinhado padrão dos links */
+    padding: 8px;
+    margin: 2px;
+}
+
+.custom-link:hover {
+    background-color: #D3dCC5;
+    color: #fff;
+}
+
+.btn-custom {
+        background-color: #D3dCC5;
+        color: #505050;
+}
