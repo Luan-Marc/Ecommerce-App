@@ -33,19 +33,25 @@ Siga as instruções detalhadas abaixo para configurar o projeto em seu ambiente
         source ecommerce/bin/activate
         ```
 
-3. **Clone o repositório dentro do ambiente virtual:**
+3. **Navegue até o diretório do projeto:**
+
+    ```bash
+    cd ecommerce
+    ```
+
+4. **Clone o repositório dentro do ambiente virtual:**
 
     ```bash
     git clone https://github.com/Luan-Marc/ecommerce-app.git
     ```
 
-4. **Navegue até o diretório do projeto:**
+5. **Navegue até o diretório do projeto clonado:**
 
     ```bash
-    cd ecommerce/ecommerce-app
+    cd ecommerce-app
     ```
 
-5. **Instale as dependências do projeto:**
+6. **Instale as dependências do projeto:**
 
     ```bash
     pip install -r requirements.txt
