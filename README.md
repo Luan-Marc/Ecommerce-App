@@ -1,22 +1,22 @@
-# Descrição do Projeto E-commerce
+# Projeto E-commerce
 
 O projeto E-commerce é uma aplicação web desenvolvida em Django, um framework poderoso para construção de aplicações web em Python.
 
 ## Configuração e Execução
 
-Para configurar o projeto em seu ambiente local, siga as instruções detalhadas abaixo:
+Siga as instruções detalhadas abaixo para configurar o projeto em seu ambiente local.
 
-## Pré-requisitos
+### Pré-requisitos
 
 - Python 3.x instalado em sua máquina
 - Virtualenv instalado (`pip install virtualenv`)
 
-## Instalação
+### Instalação
 
 1. **Crie um ambiente virtual:**
 
     ```bash
-    virtualenv ecoomerce
+    virtualenv ecommerce
     ```
 
 2. **Ative o ambiente virtual:**
@@ -24,16 +24,16 @@ Para configurar o projeto em seu ambiente local, siga as instruções detalhadas
     - No Windows:
 
         ```bash
-        .\venv\Scripts\activate
+        .\ecommerce\Scripts\activate
         ```
 
     - No Unix ou MacOS:
 
         ```bash
-        source venv/bin/activate
+        source ecommerce/bin/activate
         ```
 
-3. **Clone o repositório:**
+3. **Clone o repositório dentro do ambiente virtual:**
 
     ```bash
     git clone https://github.com/Luan-Marc/ecommerce-app.git
@@ -42,7 +42,7 @@ Para configurar o projeto em seu ambiente local, siga as instruções detalhadas
 4. **Navegue até o diretório do projeto:**
 
     ```bash
-    cd ecommerce-project
+    cd ecommerce/ecommerce-app
     ```
 
 5. **Instale as dependências do projeto:**
@@ -51,7 +51,7 @@ Para configurar o projeto em seu ambiente local, siga as instruções detalhadas
     pip install -r requirements.txt
     ```
 
-## Configuração do Banco de Dados
+### Configuração do Banco de Dados
 
 1. **Aplique as migrações do banco de dados:**
 
@@ -59,8 +59,8 @@ Para configurar o projeto em seu ambiente local, siga as instruções detalhadas
     python manage.py makemigrations
     python manage.py migrate
     ```
-    
-## Arquivos Estáticos e Mídia
+
+### Arquivos Estáticos e Mídia
 
 1. **Colete os arquivos estáticos:**
 
@@ -70,15 +70,15 @@ Para configurar o projeto em seu ambiente local, siga as instruções detalhadas
 
 2. Configure o diretório raiz e a URL de mídia em `settings.py` para lidar com arquivos de mídia.
 
-## Configuração do Crispy Forms
+### Configuração do Crispy Forms
 
 1. O Crispy Forms está configurado com o Bootstrap 5. Ajuste as configurações `CRISPY_ALLOWED_TEMPLATE_PACKS` e `CRISPY_TEMPLATE_PACK` em `settings.py` se necessário.
 
-## Configuração do Número de Telefone
+### Configuração do Número de Telefone
 
 1. A região padrão para números de telefone está configurada como 'BR' (Brasil). Ajuste `PHONENUMBER_DEFAULT_REGION` em `settings.py` para uma região diferente.
 
-## Executar a Aplicação
+### Executar a Aplicação
 
 1. **Inicie o servidor de desenvolvimento:**
 
@@ -91,4 +91,3 @@ Para configurar o projeto em seu ambiente local, siga as instruções detalhadas
 ## Conclusão
 
 Você configurou e instalou com sucesso o projeto E-commerce. Explore a aplicação e personalize-a conforme suas necessidades. Se encontrar problemas, consulte a [documentação do Django](https://docs.djangoproject.com/) para obter ajuda.
-
