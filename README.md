@@ -16,7 +16,7 @@ Para configurar o projeto em seu ambiente local, siga as instruções detalhadas
 1. **Crie um ambiente virtual:**
 
     ```bash
-    virtualenv venv
+    virtualenv ecoomerce
     ```
 
 2. **Ative o ambiente virtual:**
