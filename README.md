@@ -65,17 +65,6 @@ Siga as instruções detalhadas abaixo para configurar o projeto em seu ambiente
     python manage.py makemigrations
     python manage.py migrate
     ```
-### Criar um Superusuário
-
-A criação de um superusuário é uma prática comum ao iniciar um projeto Django. Um superusuário tem privilégios administrativos e é essencial para acessar a área administrativa do Django, onde você pode gerenciar dados no banco de dados, como criar, editar e excluir registros. O acesso a area administrativa pode ser feito atraves do seguinte endereço http://127.0.0.1:8000/admin 
-
-1. **Execute o seguinte comando para criar um superusuário:**
-
-    ```bash
-    python manage.py createsuperuser
-    ```
-
-    Siga as instruções para fornecer um nome de usuário, endereço de e-mail e senha para o superusuário.
 
 ### Configuração do Crispy Forms
 
